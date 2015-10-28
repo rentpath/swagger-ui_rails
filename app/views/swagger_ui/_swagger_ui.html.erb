@@ -1,70 +1,42 @@
 <script type="text/javascript">
-  $(function () {
-    window.swaggerUi = new SwaggerUi({
-      url: '<%= discovery_url %>',
-      <% if defined?(api_key) %>
-        apiKey: '<%= api_key %>',
-      <% end %>
-      dom_id:"swagger-ui-container",
-      supportHeaderParams: false,
-      supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-      onComplete: function(swaggerApi, swaggerUi){
-        if(console) {
-              console.log("Loaded SwaggerUI")
-              console.log(swaggerApi);
-              console.log(swaggerUi);
-          }
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-      },
-      onFailure: function(data) {
-        if(console) {
-              console.log("Unable to Load SwaggerUI");
-              console.log(data);
-          }
-      },
-      docExpansion: "none"
-    });
+$(function () {
+  var url = '<%= discovery_url %>';
 
-    window.swaggerUi.load();
+  window.swaggerUi = new SwaggerUi({
+    url: url,
+    dom_id: "swagger-ui-container",
+    supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+    onComplete: function(swaggerApi, swaggerUi){
+      if(console) {
+        console.log("Loaded SwaggerUI")
+          console.log(swaggerApi);
+        console.log(swaggerUi);
+      }
+      $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+    },
+    onFailure: function(data) {
+      if(console) {
+        console.log("Unable to Load SwaggerUI");
+        console.log(data);
+      }
+    },
+    docExpansion: "list",
+    apisSorter: "alpha",
+    showRequestHeaders: false
   });
-
-</script>
-
-<script type="text/javascript">
-  $(function () {
-    var url = '<%= discovery_url %>';
-
-    window.swaggerUi = new SwaggerUi({
-      url: url,
-      dom_id: "swagger-ui-container",
-      supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-      onComplete: function(swaggerApi, swaggerUi){
-        if(console) {
-              console.log("Loaded SwaggerUI")
-              console.log(swaggerApi);
-              console.log(swaggerUi);
-          }
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-      },
-      onFailure: function(data) {
-        if(console) {
-              console.log("Unable to Load SwaggerUI");
-              console.log(data);
-          }
-      },
-      docExpansion: "none",
-      apisSorter: "alpha",
-      showRequestHeaders: false
-    });
-    window.swaggerUi.load();
-  });
+  window.swaggerUi.load();
+});
 </script>
 
 <body class="swagger-section">
-  <div id='header'>
-    <div class="swagger-ui-wrap">
-    </div>
-  </div>
+  <%#<div id='header'>%>
+    <%#<div class="swagger-ui-wrap">%>
+      <%#<form id='api_selector'>%>
+        <%#<div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>%>
+        <%#<div class='input'><a id="explore" href="#" data-sw-translate>Explore</a></div>%>
+      <%#</form>%>
+    <%#</div>%>
+  <%#</div>%>
 
   <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
   <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
